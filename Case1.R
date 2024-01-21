@@ -34,9 +34,19 @@ summary_df2 <- data.frame(
 library(ggplot2)
 
 # Bar plot for summary statistics
-ggplot(summary_df2, aes(x = Variable, y = Value, fill = Statistic)) +
+sales_fuelvolume_plot <- ggplot(summary_df, aes(x = Variable, y = Value, fill = Statistic)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(title = "Summary Statistics of Sales, Fuel Volume, TV, and Radio", 
        x = "Variable", 
        y = "Value") +
   theme_minimal()
+tv_radio_plot <- ggplot(summary_df2, aes(x = Variable, y = Value, fill = Statistic)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Summary Statistics of Sales, Fuel Volume, TV, and Radio", 
+       x = "Variable", 
+       y = "Value") +
+  theme_minimal()
+
+# Save the plot to a PDF file
+ggsave("plots/sales_fuelvolume_plot.pdf", sales_fuelvolume_plot, width = 12, height = 6)
+ggsave("plots/tv_radio_plot.pdf", tv_radio_plot, width = 12, height = 6)
