@@ -2,7 +2,7 @@ library(ggplot2)
 library(coefplot)
 
 # Include all variables except for 'Week' in the regression model
-model3 <- lm(Sales ~ . - Week, data = sales)
+model3 <- lm(Sales ~ . - Week - Radio, data = sales)
 summary(model3) # Print summary to check for significance of variables
 
 # A
@@ -26,3 +26,7 @@ plot(model3, which = 3)
 # 4. Residuals vs Leverage Plot
 # Helps to identify influential observations
 plot(model3, which = 4)
+
+# Generate partial regression plots
+avPlots(model3)
+
