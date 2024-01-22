@@ -1,3 +1,8 @@
+# Install and load the car package
+if (!require(car)) install.packages("car")
+library(car)
+
+
 #From question 2
 # Create model 1 agin # Run a linear regression of c-store sales against TV and radio
 model1 <- lm(Sales ~ TV + Radio, data = sales)
@@ -45,3 +50,6 @@ library(coefplot)
 
 # Coefficient plot for model2 without intercept and with adjusted y-axis
 coefplot(model2, intercept = FALSE)
+
+# Generate partial regression plots
+avPlots(model2)
