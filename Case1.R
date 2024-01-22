@@ -28,7 +28,7 @@ summary_df <- data.frame(
 summary_df2 <- data.frame(
   Variable = rep(c("TV", "Radio"), each = 3),
   Statistic = rep(c("Min", "Average", "Max"), times = 4),
-  Value = c(stats_sales, stats_fuel_volume, stats_tv, stats_radio)
+  Value = c(stats_tv, stats_radio)
 )
 
 library(ggplot2)
