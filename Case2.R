@@ -2,7 +2,10 @@
 model1 <- lm(Sales ~ TV + Radio, data = sales)
 
 # Print the summary of the regression model
-summary(model1)
+summary_model1 <- summary(model1)
+
+# Extract R-squared value
+r_squared <- summary_model1$r.squared
 
 # A
 library(ggplot2)
@@ -25,12 +28,14 @@ ggplot(sales, aes(x = Radio, y = Sales)) +
 # Calculating residuals and fitted values
 residuals_model1 <- resid(model1)
 fitted_model1 <- fitted(model1)
-
 # Create a data frame for plotting residuals
 plot_data <- data.frame(Fitted = fitted_model1, Residuals = residuals_model1)
 
-# Residual plot
-ggplot(data.frame(Fitted = fitted_model1, Residuals = residuals_model1), aes(x = Fitted, y = Residuals)) +
+# Residual plot with R-squared value
+ggplot(plot_data, aes(x = Fitted, y = Residuals)) +
   geom_point() +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  labs(title = "Residual Plot for Sales vs. TV and Radio Advertising", x = "Fitted Values of Sales", y = "Residuals")
+  annotate("text", x = Inf, y = Inf, label = paste("R-squared =", round(r_squared, 2)), hjust = 1.1, vjust = 1.1) +
+  labs(title = paste("Residual Plot for Sales vs. TV and Radio Advertising\nR-squared:", round(r_squared, 2)), 
+       x = "Fitted Values of Sales", 
+       y = "Residuals")
